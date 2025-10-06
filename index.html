@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elephant World</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elephant World</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background: #fefaf6;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #d6f0ff;
+      position: relative;
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+   .elephant {
+      cursor: pointer;
+      width: 300px;   /* bigger than before */
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    #spray-container {
+      position: absolute;
+      top: 140px; /* roughly above the trunk */
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .spray {
+      position: absolute;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #0077cc;
+      opacity: 0;
+      animation: sprayUp 3s forwards;
+      white-space: nowrap;
+    }
+    @keyframes sprayUp {
+      0% { transform: translateY(0) scale(0.8); opacity: 1; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-150px) scale(1.2); opacity: 0; }
+    }
+    nav {
+      text-align: center;
+      background: #eee;
+      padding: 1rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+    section {
+      padding: 3rem 1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea {
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+    }
+    button {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: #0077cc;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #d6f0ff;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="home">
+    <h1>Welcome to Elephant World!</h1>
+    <div id="spray-container"></div>
+    <video id="elephant-video" class="elephant" src="ella.mp4" playsinline></video>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="facts.html">Facts</a>
+    <a href="#contact">Contact</a>
+    <a href="https://en.wikipedia.org/wiki/Elephant" target="_blank">Wikipedia</a>
+  </nav>
+
+  <section id="facts">
+    <h2>About Elephants</h2>
+    <p>Elephants are the largest land animals on Earth, known for their intelligence,
+    memory, and strong family bonds. They play an essential role in their ecosystems.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/yourFormID" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Elephant World</p>
+  </footer>
+
+ <script>
+  const facts = [
+      "Elephants are the largest land animals on Earth, weighing up to 12,000 pounds!",
+      "They can live up to 70 years in the wild.",
+      "Elephants use their trunks to smell, breathe, trumpet, drink, and grab things.",
+      "They are highly intelligent and have excellent memories.",
+      "African elephants have larger ears than Asian elephants.",
+      "Elephants can recognize themselves in a mirror!",
+      "The T-rex sound in Jurassic Park was actually a bull elephant.",
+      "An elephant's trunk contains over 150,000 muscles and tendons.",
+      "They can sense vibrations up to 50 miles away.",
+      "They have the longest gestation period of any land animal - 22 months!",
+      "Elephant tusks are actually teeth and they never stop growing!",
+      "There are 3 species of elephant - African Savannah, African Forest, and Asian.",
+      "An elephant creates one ton of poop every week.",
+      "Elephants spend 12-18 hours every day eating.",
+      "An elephant trunk can lift up to 700lbs!"
+  ];
+
+  const video = document.getElementById("elephant-video");
+  const sprayContainer = document.getElementById("spray-container");
+
+  video.addEventListener("click", () => {
+    // restart video from the beginning
+    video.pause();
+    video.currentTime = 0;
+    video.play();
+
+    // create random fact "spray"
+    const randomFact = facts[Math.floor(Math.random() * facts.length)];
+    const spray = document.createElement("div");
+    spray.className = "spray";
+    spray.textContent = randomFact;
+
+    spray.style.right = `${Math.random() * 120 - 60}px`;
+    sprayContainer.appendChild(spray);
+
+    setTimeout(() => {
+      spray.remove();
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>
+
+   
